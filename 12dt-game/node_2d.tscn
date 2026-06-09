@@ -31,8 +31,9 @@ size = Vector2(6, 651.5)
 
 [node name="Node2D" type="Node2D" unique_id=1454970592]
 
-[node name="CharacterBody2D" parent="." unique_id=1052891024 instance=ExtResource("1_wtcfe")]
+[node name="CharacterBody2D" parent="." unique_id=1052891024 node_paths=PackedStringArray("health_ui") instance=ExtResource("1_wtcfe")]
 position = Vector2(256, 305)
+health_ui = NodePath("../CanvasLayer/ProgressBar")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1031700251]
 offset_top = -1.0
@@ -198,3 +199,13 @@ shape = SubResource("RectangleShape2D_rj586")
 [node name="CollisionShape2D18" type="CollisionShape2D" parent="StaticBody2D" unique_id=1135222410]
 position = Vector2(1156, 323)
 shape = SubResource("RectangleShape2D_4d7sh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1180093717]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=443106913]
+offset_right = 4.0
+offset_bottom = 27.0
+max_value = 10.0
+step = 0.1
+value = 10.0
+show_percentage = false

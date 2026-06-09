@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dcnpehhbyqtja"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7xaro"]
+radius = 18.027756
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7k104"]
+radius = 19.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=910689165]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=232318469]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0.69803923, 0.18431373, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=876348567]
+shape = SubResource("CircleShape2D_7xaro")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1149900868]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1076683814]
+shape = SubResource("CircleShape2D_7k104")
