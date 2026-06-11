@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dcnpehhbyqtja"]
 
+[ext_resource type="Script" uid="uid://b7d7gicoq7ym2" path="res://enemy.gd" id="1_7k104"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xaro"]
 radius = 18.027756
 
@@ -7,6 +9,7 @@ radius = 18.027756
 radius = 19.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=910689165]
+script = ExtResource("1_7k104")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=232318469]
 offset_left = -18.0

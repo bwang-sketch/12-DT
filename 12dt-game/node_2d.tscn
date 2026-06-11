@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dyj63d2ucw30q"]
 
+[ext_resource type="Script" uid="uid://dil1a2hwd7rp0" path="res://manager.gd" id="1_0e48y"]
 [ext_resource type="PackedScene" uid="uid://buyqcvi5km5hj" path="res://player.tscn" id="1_wtcfe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
@@ -29,7 +30,29 @@ size = Vector2(1169, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4d7sh"]
 size = Vector2(6, 651.5)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtcfe"]
+bg_color = Color(0.9647059, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0e48y"]
+bg_color = Color(0.26666668, 1, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.1882353, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Curve2D" id="Curve2D_0e48y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 904, 182, 0, 0, 0, 0, 761, 378, 0, 0, 0, 0, 672, 141, 0, 0, 0, 0, 901, 179)
+}
+point_count = 4
+
 [node name="Node2D" type="Node2D" unique_id=1454970592]
+script = ExtResource("1_0e48y")
 
 [node name="CharacterBody2D" parent="." unique_id=1052891024 node_paths=PackedStringArray("health_ui") instance=ExtResource("1_wtcfe")]
 position = Vector2(256, 305)
@@ -203,9 +226,26 @@ shape = SubResource("RectangleShape2D_4d7sh")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1180093717]
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=443106913]
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 35.0
+offset_top = 32.0
+offset_right = 310.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0, 0.7073739, 0.33746186, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_wtcfe")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0e48y")
 max_value = 10.0
 step = 0.1
 value = 10.0
 show_percentage = false
+
+[node name="Path2D" type="Path2D" parent="." unique_id=97805763]
+curve = SubResource("Curve2D_0e48y")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1558974251]
+position = Vector2(904, 182)
+rotation = 2.2011077
+
+[node name="Timer" type="Timer" parent="." unique_id=2038776079]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_spawn_enemy"]
