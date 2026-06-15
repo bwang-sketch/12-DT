@@ -10,6 +10,7 @@ func _spawn_enemy() -> void:
 	enemy.global_position = enemy_spawn.global_position
 	add_child(enemy)
 
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
