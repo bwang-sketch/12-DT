@@ -7,15 +7,15 @@ var enemy_amount
 
 # Called when the node enters the scene tree for the first time.
 func _spawn_enemy() -> void:
-	var enemy = enemy_scene.instantiate()
-	enemy_spawn.progress_ratio = randf_range(0.0, 1.0)
-	enemy.global_position = enemy_spawn.global_position
-	add_child(enemy)
-	
 	var enemy_amount = get_tree().get_nodes_in_group("enemies").size()
 	if enemy_amount < 3:
-		_spawn_enemy()
-	return
+		
+		var enemy = enemy_scene.instantiate()
+		enemy_spawn.progress_ratio = randf_range(0.0, 1.0)
+		enemy.global_position = enemy_spawn.global_position
+		add_child(enemy)
+	
+	
 
 	
 

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dyj63d2ucw30q"]
 
-[ext_resource type="Script" uid="uid://dil1a2hwd7rp0" path="res://manager.gd" id="1_0e48y"]
-[ext_resource type="PackedScene" uid="uid://buyqcvi5km5hj" path="res://player.tscn" id="1_wtcfe"]
-[ext_resource type="PackedScene" uid="uid://dcnpehhbyqtja" path="res://enemy.tscn" id="2_epypp"]
+[ext_resource type="Script" uid="uid://dil1a2hwd7rp0" path="res://scripts/manager.gd" id="1_rnjyy"]
+[ext_resource type="PackedScene" uid="uid://dcnpehhbyqtja" path="res://scenes/enemy.tscn" id="2_4vge2"]
+[ext_resource type="PackedScene" uid="uid://buyqcvi5km5hj" path="res://scenes/player.tscn" id="3_04qyp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 size = Vector2(164, 80.25)
@@ -53,11 +53,11 @@ _data = {
 point_count = 4
 
 [node name="Node2D" type="Node2D" unique_id=1454970592 node_paths=PackedStringArray("enemy_spawn")]
-script = ExtResource("1_0e48y")
+script = ExtResource("1_rnjyy")
 enemy_spawn = NodePath("Path2D/PathFollow2D")
-enemy_scene = ExtResource("2_epypp")
+enemy_scene = ExtResource("2_4vge2")
 
-[node name="CharacterBody2D" parent="." unique_id=1052891024 node_paths=PackedStringArray("health_ui") instance=ExtResource("1_wtcfe")]
+[node name="CharacterBody2D" parent="." unique_id=1052891024 node_paths=PackedStringArray("health_ui") instance=ExtResource("3_04qyp")]
 position = Vector2(256, 305)
 health_ui = NodePath("../CanvasLayer/ProgressBar")
 
