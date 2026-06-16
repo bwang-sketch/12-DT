@@ -8,7 +8,7 @@ radius = 18.027756
 [sub_resource type="CircleShape2D" id="CircleShape2D_7k104"]
 radius = 19.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=910689165]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=910689165 groups=["enemies"]]
 script = ExtResource("1_7k104")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=232318469]

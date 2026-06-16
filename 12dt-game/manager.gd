@@ -1,5 +1,7 @@
 extends Node2D
 
+var enemy_amount
+
 @export var enemy_spawn: PathFollow2D
 @export var enemy_scene: PackedScene
 
@@ -9,6 +11,11 @@ func _spawn_enemy() -> void:
 	enemy_spawn.progress_ratio = randf_range(0.0, 1.0)
 	enemy.global_position = enemy_spawn.global_position
 	add_child(enemy)
+	
+	var enemy_amount = get_tree().get_nodes_in_group("enemies").size()
+	if enemy_amount < 3:
+		_spawn_enemy()
+	return
 
 	
 
