@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://l20f8xmghrc7"]
+
+[ext_resource type="Script" uid="uid://c7x6d4818m6ab" path="res://scripts/projectile_enemy.gd" id="1_yrpu3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_426hy"]
+radius = 20.09975
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wkbwq"]
+radius = 21.095022
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=582937652 groups=["projectile_enemies"]]
+script = ExtResource("1_yrpu3")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=655734882]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.4377777, 0.00013264835, 0.43777445, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=389285075]
+shape = SubResource("CircleShape2D_426hy")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=317546916]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1100166565]
+shape = SubResource("CircleShape2D_wkbwq")
