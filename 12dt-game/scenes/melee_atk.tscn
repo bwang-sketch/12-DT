@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bol5vei628r17"]
+
+[ext_resource type="Script" uid="uid://by7s6b740bj75" path="res://scripts/melee_atk.gd" id="1_p0tq0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muump"]
+radius = 20.0
+height = 120.0
+
+[node name="Area2D" type="Area2D" unique_id=1745199217]
+script = ExtResource("1_p0tq0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493183350]
+position = Vector2(36, -1)
+rotation = 1.5722588
+shape = SubResource("CapsuleShape2D_muump")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=579116846]
+offset_left = 96.000015
+offset_top = -21.999985
+offset_right = 136.00002
+offset_bottom = 98.000015
+rotation = 1.562746
+color = Color(0.33333334, 0.14901961, 0, 0.11764706)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

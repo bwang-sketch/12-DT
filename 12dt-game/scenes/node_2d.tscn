@@ -55,9 +55,9 @@ point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_rnjyy"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1001, 131, 0, 0, 0, 0, 1000, 372, 0, 0, 0, 0, 1043, 235, 0, 0, 0, 0, 1001, 129)
+"points": PackedVector2Array(0, 0, 0, 0, 937, 144, 0, 0, 0, 0, 907, 274, 0, 0, 0, 0, 1000, 372, 0, 0, 0, 0, 957, 259, 0, 0, 0, 0, 1001, 129)
 }
-point_count = 4
+point_count = 5
 
 [node name="Node2D" type="Node2D" unique_id=1454970592 node_paths=PackedStringArray("enemy_spawn", "projectile_enemy_spawn")]
 script = ExtResource("1_rnjyy")
@@ -261,13 +261,16 @@ rotation = 2.2011077
 autostart = true
 
 [node name="Path2D2" type="Path2D" parent="." unique_id=330996740]
+position = Vector2(454.20325, 0)
+scale = Vector2(0.5212755, 1)
 curve = SubResource("Curve2D_rnjyy")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D2" unique_id=1797364072]
-position = Vector2(1001, 131)
-rotation = 1.5749457
+position = Vector2(937, 144)
+rotation = 1.7975951
 
 [node name="Timer2" type="Timer" parent="." unique_id=1692976495]
+autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_spawn_enemy"]
 [connection signal="timeout" from="Timer2" to="." method="_spawn_projectile_enemy"]
