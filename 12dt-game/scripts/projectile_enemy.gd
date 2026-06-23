@@ -16,3 +16,9 @@ func _process(delta: float) -> void:
 	velocity = SPEED * Vector2(1, 0).rotated(rotation)
 	
 	move_and_slide()
+
+func take_damage() -> void:
+	if health > 0:
+		health -= 1
+	else:
+		queue_free()

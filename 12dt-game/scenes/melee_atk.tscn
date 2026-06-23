@@ -20,6 +20,6 @@ offset_top = -21.999985
 offset_right = 136.00002
 offset_bottom = 98.000015
 rotation = 1.562746
-color = Color(0.33333334, 0.14901961, 0, 0.11764706)
+color = Color(0.28627452, 1, 0, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

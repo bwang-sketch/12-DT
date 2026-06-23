@@ -8,6 +8,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
+	if body.is_in_group("enemies"):
+		body.take_damage()
+		queue_free()
+
+	if body.is_in_group("projectile_enemies"):
 		body.take_damage()
 		queue_free()
