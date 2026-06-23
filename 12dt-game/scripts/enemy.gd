@@ -22,3 +22,7 @@ func take_damage() -> void:
 		health -= 1
 	else:
 		queue_free()
+
+func _damage_player(body: Node2D) -> void:
+	if body == player:
+		player.take_damage()

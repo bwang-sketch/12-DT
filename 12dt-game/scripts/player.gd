@@ -42,3 +42,10 @@ func _attack() -> void:
 
 func _melee_atk_cooldown() -> void:
 	can_attack = true
+
+func take_damage() -> void:
+	if health > 0:
+		health -= 1
+		health_ui.value = health
+	else:
+		get_tree().call_deferred("reload_current_scene")

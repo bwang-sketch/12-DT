@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://l20f8xmghrc7"]
 
 [ext_resource type="Script" uid="uid://c7x6d4818m6ab" path="res://scripts/projectile_enemy.gd" id="1_yrpu3"]
+[ext_resource type="PackedScene" uid="uid://p68wnda03fnm" path="res://scenes/enemy_projectile.tscn" id="2_ffp01"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_426hy"]
 radius = 20.09975
@@ -8,15 +9,23 @@ radius = 20.09975
 [sub_resource type="CircleShape2D" id="CircleShape2D_wkbwq"]
 radius = 21.095022
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=582937652 groups=["projectile_enemies"]]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=582937652 node_paths=PackedStringArray("enemy_projectile_spawn", "pivot", "timer") groups=["projectile_enemies"]]
 script = ExtResource("1_yrpu3")
+enemy_projectile_scene = ExtResource("2_ffp01")
+enemy_projectile_spawn = NodePath("Node2D/Marker2D")
+pivot = NodePath("Node2D")
+timer = NodePath("Timer")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=655734882]
+[node name="Node2D" type="Node2D" parent="." unique_id=1051063046]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=117833778]
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
-color = Color(0.4377777, 0.00013264835, 0.43777445, 1)
+color = Color(0.35225967, 8.413255e-05, 0.35225695, 1)
+
+[node name="Marker2D" type="Marker2D" parent="Node2D" unique_id=947371911]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=389285075]
 shape = SubResource("CircleShape2D_426hy")
@@ -25,3 +34,9 @@ shape = SubResource("CircleShape2D_426hy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1100166565]
 shape = SubResource("CircleShape2D_wkbwq")
+
+[node name="Timer" type="Timer" parent="." unique_id=1224792709]
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_damage_player"]
+[connection signal="timeout" from="Timer" to="." method="_projectile_atk_cooldown"]
