@@ -22,6 +22,10 @@ func _process(delta: float) -> void:
 	velocity = SPEED * Vector2(1, 0).rotated(rotation)
 	
 	move_and_slide()
+	
+	if can_attack:
+		_projectile_atk_cooldown()
+		_projectile_attack()
 
 func take_damage() -> void:
 	if health > 0:
@@ -35,8 +39,8 @@ func _damage_player(body: Node2D) -> void:
 
 func _projectile_attack() -> void:
 	var enemy_projectile = enemy_projectile_scene.instantiate()
-	enemy_projectile.rotation = pivot.rotation
-	enemy_projectile.global_position = enemy_projectile.global_position
+	enemy_projectile.rotation = pivot.global_rotation
+	enemy_projectile.global_position = enemy_projectile_spawn.global_position
 	add_sibling(enemy_projectile)
 	can_attack = false
 	timer.start()
