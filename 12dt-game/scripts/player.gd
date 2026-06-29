@@ -3,8 +3,10 @@ extends CharacterBody2D
 var speed: float = 300.0
 var can_attack: bool = true
 var health: int = 10
+var energy: int = 10
 
 @export var health_ui: ProgressBar
+@export var energy_ui: ProgressBar
 @export var melee_atk_scene: PackedScene
 @export var melee_atk_spawn: Marker2D
 @export var pivot: Node2D
@@ -15,6 +17,8 @@ func _ready() -> void:
 	health_ui.max_value = health
 	health_ui.value = health
 
+	energy_ui.max_value = energy
+	energy_ui.value = energy
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -49,3 +53,8 @@ func take_damage() -> void:
 		health_ui.value = health
 	else:
 		get_tree().call_deferred("reload_current_scene")
+
+func use_energy() -> void:
+	if energy > 0:
+		energy -= 1
+		energy_ui.value = energy

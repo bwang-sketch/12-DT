@@ -47,6 +47,20 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vge2"]
+bg_color = Color(0.45810896, 0.72604734, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04qyp"]
+
 [sub_resource type="Curve2D" id="Curve2D_0e48y"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 904, 182, 0, 0, 0, 0, 761, 378, 0, 0, 0, 0, 672, 141, 0, 0, 0, 0, 901, 179)
@@ -238,9 +252,9 @@ shape = SubResource("RectangleShape2D_4d7sh")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1180093717]
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=443106913]
-offset_left = 35.0
+offset_left = 37.0
 offset_top = 32.0
-offset_right = 310.0
+offset_right = 306.0
 offset_bottom = 36.0
 theme_override_colors/font_color = Color(0, 0.7073739, 0.33746186, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_wtcfe")
@@ -248,6 +262,74 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0e48y")
 max_value = 10.0
 step = 0.1
 value = 10.0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1103598761]
+offset_left = 26.0
+offset_top = 40.0
+offset_right = 317.0
+offset_bottom = 61.0
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=212876835]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer2" unique_id=215818199]
+offset_left = 35.0
+offset_top = 53.0
+offset_right = 78.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.055667818, 0.334403, 0.66007745, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_4vge2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_04qyp")
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="CanvasLayer2" unique_id=1164632679]
+offset_left = 265.0
+offset_top = 53.0
+offset_right = 309.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.055667818, 0.334403, 0.66007745, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_4vge2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_04qyp")
+show_percentage = false
+
+[node name="ProgressBar3" type="ProgressBar" parent="CanvasLayer2" unique_id=342109445]
+offset_left = 219.0
+offset_top = 53.0
+offset_right = 262.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.055667818, 0.334403, 0.66007745, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_4vge2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_04qyp")
+show_percentage = false
+
+[node name="ProgressBar4" type="ProgressBar" parent="CanvasLayer2" unique_id=2121262321]
+offset_left = 173.0
+offset_top = 53.0
+offset_right = 216.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.055667818, 0.334403, 0.66007745, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_4vge2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_04qyp")
+show_percentage = false
+
+[node name="ProgressBar5" type="ProgressBar" parent="CanvasLayer2" unique_id=681185229]
+offset_left = 127.0
+offset_top = 53.0
+offset_right = 170.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.055667818, 0.334403, 0.66007745, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_4vge2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_04qyp")
+show_percentage = false
+
+[node name="ProgressBar6" type="ProgressBar" parent="CanvasLayer2" unique_id=1665811128]
+offset_left = 81.0
+offset_top = 53.0
+offset_right = 124.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.055667818, 0.334403, 0.66007745, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_4vge2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_04qyp")
 show_percentage = false
 
 [node name="Path2D" type="Path2D" parent="." unique_id=97805763]
