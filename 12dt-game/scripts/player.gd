@@ -14,6 +14,7 @@ var energy: int = 10
 @export var projectile_slash_spawn: Marker2D
 @export var pivot: Node2D
 @export var timer: Timer
+@export var timer2: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,14 +35,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("ui_accept") and can_attack:
 		_attack()
 		
-	if Input.is_action_pressed("ui_accept") and can_slash:
+	if Input.is_action_pressed("slash") and can_slash:
 		_slash()
 		
 	move_and_slide()
 
-	if Input.is_action_pressed("shift"):
-		energy >= 10
-		energy = 9
 	
 func _attack() -> void:
 	var melee_atk = melee_atk_scene.instantiate()
@@ -56,14 +54,14 @@ func _slash() -> void:
 	projectile_slash.rotation = pivot.rotation
 	projectile_slash.global_position = projectile_slash_spawn.global_position
 	add_sibling(projectile_slash)
-	can_attack = false
-	timer.start()
-
-func _projectile_slash_cooldown() -> void:
-	can_slash = true
+	can_slash = false
+	timer2.start()
 
 func _melee_atk_cooldown() -> void:
 	can_attack = true
+
+func projectile_slash_cooldown() -> void:
+	can_slash = true
 
 func take_damage() -> void:
 	if health > 0:

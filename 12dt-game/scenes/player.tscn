@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_sh265"]
 radius = 14.035668
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1052891024 node_paths=PackedStringArray("melee_atk_spawn", "projectile_slash_spawn", "pivot", "timer") groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1052891024 node_paths=PackedStringArray("melee_atk_spawn", "projectile_slash_spawn", "pivot", "timer", "timer2") groups=["player"]]
 script = ExtResource("1_4flbx")
 melee_atk_scene = ExtResource("2_g2els")
 melee_atk_spawn = NodePath("Node2D/Marker2D")
@@ -15,6 +15,7 @@ projectile_slash_scene = ExtResource("3_qhqgy")
 projectile_slash_spawn = NodePath("Node2D/Marker2D")
 pivot = NodePath("Node2D")
 timer = NodePath("Timer")
+timer2 = NodePath("Timer2")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1796838134]
 
@@ -31,4 +32,9 @@ shape = SubResource("CircleShape2D_sh265")
 
 [node name="Timer" type="Timer" parent="." unique_id=122262605]
 
+[node name="Timer2" type="Timer" parent="." unique_id=1159480146]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_melee_atk_cooldown"]
+[connection signal="timeout" from="Timer2" to="." method="projectile_slash_cooldown"]
