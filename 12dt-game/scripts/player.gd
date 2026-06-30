@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var speed: float = 300.0
 var can_attack: bool = true
+var can_slash: bool = true
 var health: int = 10
 var energy: int = 10
 
@@ -9,6 +10,8 @@ var energy: int = 10
 @export var energy_ui: ProgressBar
 @export var melee_atk_scene: PackedScene
 @export var melee_atk_spawn: Marker2D
+@export var projectile_slash_scene: PackedScene
+@export var projectile_slash_spawn: Marker2D
 @export var pivot: Node2D
 @export var timer: Timer
 
@@ -17,8 +20,6 @@ func _ready() -> void:
 	health_ui.max_value = health
 	health_ui.value = health
 
-	energy_ui.max_value = energy
-	energy_ui.value = energy
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -33,8 +34,15 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("ui_accept") and can_attack:
 		_attack()
 		
+	if Input.is_action_pressed("ui_accept") and can_slash:
+		_slash()
+		
 	move_and_slide()
 
+	if Input.is_action_pressed("shift"):
+		energy >= 10
+		energy = 9
+	
 func _attack() -> void:
 	var melee_atk = melee_atk_scene.instantiate()
 	melee_atk.rotation = pivot.rotation
@@ -43,6 +51,16 @@ func _attack() -> void:
 	can_attack = false
 	timer.start()
 
+func _slash() -> void:
+	var projectile_slash = projectile_slash_scene.instantiate()
+	projectile_slash.rotation = pivot.rotation
+	projectile_slash.global_position = projectile_slash_spawn.global_position
+	add_sibling(projectile_slash)
+	can_attack = false
+	timer.start()
+
+func _projectile_slash_cooldown() -> void:
+	can_slash = true
 
 func _melee_atk_cooldown() -> void:
 	can_attack = true
@@ -53,8 +71,3 @@ func take_damage() -> void:
 		health_ui.value = health
 	else:
 		get_tree().call_deferred("reload_current_scene")
-
-func use_energy() -> void:
-	if energy > 0:
-		energy -= 1
-		energy_ui.value = energy

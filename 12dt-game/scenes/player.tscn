@@ -2,14 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bgtvgj3cgu5gg" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://bol5vei628r17" path="res://scenes/melee_atk.tscn" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://1sfla51u5haj" path="res://scenes/projectile_slash.tscn" id="3_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sh265"]
 radius = 14.035668
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1052891024 node_paths=PackedStringArray("melee_atk_spawn", "pivot", "timer") groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1052891024 node_paths=PackedStringArray("melee_atk_spawn", "projectile_slash_spawn", "pivot", "timer") groups=["player"]]
 script = ExtResource("1_4flbx")
 melee_atk_scene = ExtResource("2_g2els")
 melee_atk_spawn = NodePath("Node2D/Marker2D")
+projectile_slash_scene = ExtResource("3_qhqgy")
+projectile_slash_spawn = NodePath("Node2D/Marker2D")
 pivot = NodePath("Node2D")
 timer = NodePath("Timer")
 
