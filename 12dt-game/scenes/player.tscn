@@ -15,7 +15,7 @@ projectile_slash_scene = ExtResource("3_qhqgy")
 projectile_slash_spawn = NodePath("Node2D/Marker2D")
 pivot = NodePath("Node2D")
 timer = NodePath("Timer")
-timer2 = NodePath("Timer2")
+timer2 = NodePath("Label/Timer2")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1796838134]
 
@@ -32,9 +32,16 @@ shape = SubResource("CircleShape2D_sh265")
 
 [node name="Timer" type="Timer" parent="." unique_id=122262605]
 
-[node name="Timer2" type="Timer" parent="." unique_id=1159480146]
+[node name="Label" type="Label" parent="." unique_id=617655448]
+offset_left = 42.0
+offset_top = 108.0
+offset_right = 117.0
+offset_bottom = 131.0
+text = "cooldown"
+
+[node name="Timer2" type="Timer" parent="Label" unique_id=1159480146]
 wait_time = 10.0
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_melee_atk_cooldown"]
-[connection signal="timeout" from="Timer2" to="." method="projectile_slash_cooldown"]
+[connection signal="timeout" from="Label/Timer2" to="." method="projectile_slash_cooldown"]

@@ -4,6 +4,7 @@ const SPEED: float = 75.0
 var player: CharacterBody2D
 var health: int = 2
 var can_attack: bool = true
+var is_attacking: bool = false
 
 @export var enemy_projectile_scene: PackedScene
 @export var enemy_projectile_spawn: Marker2D
@@ -17,15 +18,19 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	look_at(player.global_position)
-	velocity = SPEED * Vector2(1, 0).rotated(rotation)
 	
+	if is_attacking == true:
+		velocity = Vector2.ZERO
+	else:
+		velocity = SPEED * Vector2(1, 0).rotated(rotation)
+		
 	move_and_slide()
 	
 	if can_attack:
-		_projectile_atk_cooldown()
 		_projectile_attack()
+	
 
 func take_damage() -> void:
 	if health > 0:
@@ -43,8 +48,11 @@ func _projectile_attack() -> void:
 	enemy_projectile.global_position = enemy_projectile_spawn.global_position
 	add_sibling(enemy_projectile)
 	can_attack = false
+	is_attacking = true
 	timer.start()
 
 
 func _projectile_atk_cooldown() -> void:
+	print("Timer finished! Resetting attack.")
 	can_attack = true
+	is_attacking = false

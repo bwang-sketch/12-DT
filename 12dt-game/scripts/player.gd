@@ -63,6 +63,9 @@ func _melee_atk_cooldown() -> void:
 func projectile_slash_cooldown() -> void:
 	can_slash = true
 
+	if can_slash == false:
+		timer2 = get_node("projectile_slash_cooldown")
+	
 func take_damage() -> void:
 	if health > 0:
 		health -= 1

@@ -332,6 +332,15 @@ theme_override_styles/background = SubResource("StyleBoxFlat_4vge2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_04qyp")
 show_percentage = false
 
+[node name="CanvasLayer3" type="CanvasLayer" parent="." unique_id=224911208]
+
+[node name="Label" type="Label" parent="CanvasLayer3" unique_id=1184237822]
+offset_left = 34.0
+offset_top = 87.0
+offset_right = 74.0
+offset_bottom = 110.0
+text = "Cooldown"
+
 [node name="Path2D" type="Path2D" parent="." unique_id=97805763]
 curve = SubResource("Curve2D_0e48y")
 
