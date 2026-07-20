@@ -64,6 +64,5 @@ func _damage_player(body: Node2D) -> void:
 
 
 func _projectile_atk_cooldown() -> void:
-	print("Timer finished! Resetting attack.")
 	can_attack = true
 	is_attacking = false

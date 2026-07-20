@@ -12,7 +12,6 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.take_damage()
-		
 	
 	if body.is_in_group("projectile_enemies"):
 		body.take_damage()

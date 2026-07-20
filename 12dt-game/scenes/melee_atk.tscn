@@ -6,7 +6,7 @@
 radius = 20.0
 height = 120.0
 
-[node name="Area2D" type="Area2D" unique_id=1745199217]
+[node name="Area2D" type="Area2D" unique_id=1745199217 groups=["projectiles"]]
 script = ExtResource("1_p0tq0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493183350]
@@ -15,10 +15,10 @@ rotation = 1.5722588
 shape = SubResource("CapsuleShape2D_muump")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=579116846]
-offset_left = 96.000015
-offset_top = -21.999985
-offset_right = 136.00002
-offset_bottom = 98.000015
+offset_left = 95.889206
+offset_top = -21.999092
+offset_right = 135.8892
+offset_bottom = 97.8901
 rotation = 1.562746
 color = Color(0.28627452, 1, 0, 1)
 
