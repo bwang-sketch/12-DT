@@ -15,15 +15,18 @@ var energy: int = 10
 @export var pivot: Node2D
 @export var timer: Timer
 @export var timer2: Timer
+@export var label: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health_ui.max_value = health
 	health_ui.value = health
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not timer2.time_left == 0:
+		label.text = str(timer2.time_left)
+	
 	var direction: Vector2 = Vector2(0.0, 0.0)
 	direction.x = Input.get_axis("ui_left", "ui_right")
 	direction.y = Input.get_axis("ui_up", "ui_down")
