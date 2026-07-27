@@ -4,10 +4,10 @@ var speed: float = 300.0
 var can_attack: bool = true
 var can_slash: bool = true
 var health: int = 10
-var energy: int = 6
+var energy: int = 10
 
 @export var health_ui: ProgressBar
-@export var energy_ui: HBoxContainer
+@export var energy_ui: TextureProgressBar
 @export var melee_atk_scene: PackedScene
 @export var melee_atk_spawn: Marker2D
 @export var projectile_slash_scene: PackedScene
@@ -78,5 +78,6 @@ func take_damage() -> void:
 
 func use_energy() -> void:
 	if Input.is_action_pressed("slash") and can_slash:
-		energy -= 2
-		energy_ui.value = energy
+		if energy > 0:
+			energy -= 2
+			energy_ui.value = energy
