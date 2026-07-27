@@ -4,10 +4,10 @@ var speed: float = 300.0
 var can_attack: bool = true
 var can_slash: bool = true
 var health: int = 10
-var energy: int = 10
+var energy: int = 6
 
 @export var health_ui: ProgressBar
-@export var energy_ui: ProgressBar
+@export var energy_ui: HBoxContainer
 @export var melee_atk_scene: PackedScene
 @export var melee_atk_spawn: Marker2D
 @export var projectile_slash_scene: PackedScene
@@ -25,7 +25,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not timer2.time_left == 0:
-		label.text = str(timer2.time_left)
+		label.text = str("%0.1f" % timer2.time_left)
 	
 	var direction: Vector2 = Vector2(0.0, 0.0)
 	direction.x = Input.get_axis("ui_left", "ui_right")
@@ -75,3 +75,8 @@ func take_damage() -> void:
 		health_ui.value = health
 	else:
 		get_tree().call_deferred("reload_current_scene")
+
+func use_energy() -> void:
+	if Input.is_action_pressed("slash") and can_slash:
+		energy -= 2
+		energy_ui.value = energy

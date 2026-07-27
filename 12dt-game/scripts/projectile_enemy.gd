@@ -57,6 +57,12 @@ func take_damage() -> void:
 	else:
 		queue_free()
 
+func take_projectile_slash_damage() -> void:
+	if health > 0:
+		health -= 3
+	else:
+		queue_free()
+
 func _damage_player(body: Node2D) -> void:
 	if body == player:
 		player.take_damage()
