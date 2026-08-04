@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dcnpehhbyqtja" path="res://scenes/enemy.tscn" id="2_4vge2"]
 [ext_resource type="PackedScene" uid="uid://buyqcvi5km5hj" path="res://scenes/player.tscn" id="3_04qyp"]
 [ext_resource type="PackedScene" uid="uid://l20f8xmghrc7" path="res://scenes/projectile_enemy.tscn" id="3_4vge2"]
+[ext_resource type="Script" uid="uid://dswmmae7ido2" path="res://scenes/energy_bars.gd" id="5_04qyp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 size = Vector2(164, 80.25)
@@ -88,9 +89,10 @@ enemy_scene = ExtResource("2_4vge2")
 projectile_enemy_spawn = NodePath("Path2D2/PathFollow2D")
 projectile_enemy_scene = ExtResource("3_4vge2")
 
-[node name="CharacterBody2D" parent="." unique_id=1052891024 node_paths=PackedStringArray("health_ui") instance=ExtResource("3_04qyp")]
+[node name="CharacterBody2D" parent="." unique_id=1052891024 node_paths=PackedStringArray("health_ui", "energy_ui") instance=ExtResource("3_04qyp")]
 position = Vector2(256, 305)
 health_ui = NodePath("../CanvasLayer/ProgressBar")
+energy_ui = NodePath("../CanvasLayer2/HBoxContainer")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1031700251]
 offset_left = -1.0
@@ -273,6 +275,7 @@ value = 10.0
 show_percentage = false
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=212876835]
+script = ExtResource("5_04qyp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2" unique_id=1103598761]
 offset_left = 37.0

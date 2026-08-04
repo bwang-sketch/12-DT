@@ -4,10 +4,11 @@ var speed: float = 300.0
 var can_attack: bool = true
 var can_slash: bool = true
 var health: int = 10
-var energy: int = 10
+var current_energy: int = 6
+var slash_energy: int = 2
 
 @export var health_ui: ProgressBar
-@export var energy_ui: TextureProgressBar
+@export var energy_ui: HBoxContainer
 @export var melee_atk_scene: PackedScene
 @export var melee_atk_spawn: Marker2D
 @export var projectile_slash_scene: PackedScene
@@ -16,6 +17,7 @@ var energy: int = 10
 @export var timer: Timer
 @export var timer2: Timer
 @export var label: Label
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,9 +41,14 @@ func _process(delta: float) -> void:
 		_attack()
 		
 	if Input.is_action_pressed("slash") and can_slash:
-		_slash()
+		for used_energy in use_energy(cost: int):
+			if used_energy >= 6:
+				can_slash = false
+			else:
+				_slash()
 		
 	move_and_slide()
+
 
 	
 func _attack() -> void:
@@ -58,6 +65,7 @@ func _slash() -> void:
 	projectile_slash.global_position = projectile_slash_spawn.global_position
 	add_sibling(projectile_slash)
 	can_slash = false
+	use_energy(1)
 	timer2.start()
 
 func _melee_atk_cooldown() -> void:
@@ -76,8 +84,12 @@ func take_damage() -> void:
 	else:
 		get_tree().call_deferred("reload_current_scene")
 
-func use_energy() -> void:
-	if Input.is_action_pressed("slash") and can_slash:
-		if energy > 0:
-			energy -= 2
-			energy_ui.value = energy
+func use_energy(cost: int) -> void:
+	var used_energy: int = 0
+	var energy_bars: Array[Node] = energy_ui.get_children()
+	energy_bars.reverse()
+	for bar in energy_bars:
+		if bar.value == 0.0 and used_energy < cost: 
+			bar.value = 100
+			used_energy += 1
+			
