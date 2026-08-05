@@ -41,10 +41,7 @@ func _process(delta: float) -> void:
 		_attack()
 		
 	if Input.is_action_pressed("slash") and can_slash:
-		for used_energy in use_energy(cost: int):
-			if used_energy >= 6:
-				can_slash = false
-			else:
+		
 				_slash()
 		
 	move_and_slide()
@@ -60,12 +57,15 @@ func _attack() -> void:
 	timer.start()
 
 func _slash() -> void:
+	if available_energy() < 2:
+		return
+		
 	var projectile_slash = projectile_slash_scene.instantiate()
 	projectile_slash.rotation = pivot.rotation
 	projectile_slash.global_position = projectile_slash_spawn.global_position
 	add_sibling(projectile_slash)
 	can_slash = false
-	use_energy(1)
+	use_energy(2)
 	timer2.start()
 
 func _melee_atk_cooldown() -> void:
@@ -83,6 +83,13 @@ func take_damage() -> void:
 		health_ui.value = health
 	else:
 		get_tree().call_deferred("reload_current_scene")
+
+func available_energy() -> int:
+	var amount: int = 0
+	for bar in energy_ui.get_children():
+		if bar.value == 0.0: 
+			amount += 1
+	return amount
 
 func use_energy(cost: int) -> void:
 	var used_energy: int = 0

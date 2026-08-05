@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dcnpehhbyqtja" path="res://scenes/enemy.tscn" id="2_4vge2"]
 [ext_resource type="PackedScene" uid="uid://buyqcvi5km5hj" path="res://scenes/player.tscn" id="3_04qyp"]
 [ext_resource type="PackedScene" uid="uid://l20f8xmghrc7" path="res://scenes/projectile_enemy.tscn" id="3_4vge2"]
-[ext_resource type="Script" uid="uid://dswmmae7ido2" path="res://scenes/energy_bars.gd" id="5_04qyp"]
+[ext_resource type="Script" uid="uid://dswmmae7ido2" path="res://scripts/energy_bars.gd" id="5_04qyp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 size = Vector2(164, 80.25)
@@ -65,10 +65,15 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04qyp"]
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="Curve2D" id="Curve2D_0e48y"]
 _data = {
