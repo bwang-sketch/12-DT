@@ -40,7 +40,7 @@ offset_right = 89.0
 offset_bottom = 55.0
 
 [node name="Timer2" type="Timer" parent="Label" unique_id=1159480146]
-wait_time = 2.0
+wait_time = 5.0
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_melee_atk_cooldown"]

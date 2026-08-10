@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+const ENERGY_RECHARGE: int = 1
 const SPEED: float = 75.0
 var player: CharacterBody2D
 var health: int = 2
@@ -54,8 +55,15 @@ func _projectile_attack() -> void:
 func take_damage() -> void:
 	if health > 0:
 		health -= 1
-	else:
+	if health <= 0:
+		var energy_bars: Array[Node] = player.energy_ui.get_children()
+		var gained_energy: int = 0
+		for bar in energy_bars:
+			if bar.value == 100 and gained_energy < ENERGY_RECHARGE:
+				bar.value = 0.0
+				gained_energy += 1
 		queue_free()
+
 
 func take_projectile_slash_damage() -> void:
 	if health > 0:

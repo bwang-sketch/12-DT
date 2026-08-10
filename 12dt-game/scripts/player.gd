@@ -41,8 +41,7 @@ func _process(delta: float) -> void:
 		_attack()
 		
 	if Input.is_action_pressed("slash") and can_slash:
-		
-				_slash()
+		_slash()
 		
 	move_and_slide()
 
@@ -67,6 +66,8 @@ func _slash() -> void:
 	can_slash = false
 	use_energy(2)
 	timer2.start()
+
+
 
 func _melee_atk_cooldown() -> void:
 	can_attack = true
