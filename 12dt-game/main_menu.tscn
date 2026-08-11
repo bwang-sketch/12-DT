@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://l1yi80fr4n7u"]
+
+[ext_resource type="Script" uid="uid://b616jfpjmx2hu" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://c64d1ren71lps" path="res://assets/mainmenu.png" id="2_fu7sn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jix8l"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Node2D" type="Node2D" unique_id=398908571]
+script = ExtResource("1_7vrkn")
+
+[node name="Mainmenu" type="Sprite2D" parent="." unique_id=1063395372]
+position = Vector2(576.25, 325)
+scale = Vector2(1.3757467, 1.3771186)
+texture = ExtResource("2_fu7sn")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1587776043]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="." unique_id=588976548]
+offset_left = 64.0
+offset_top = 150.0
+offset_right = 177.0
+offset_bottom = 212.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+
+[node name="Button2" type="Button" parent="." unique_id=1252182514]
+offset_left = 64.0
+offset_top = 231.0
+offset_right = 178.0
+offset_bottom = 293.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_fu7sn")
+
+[node name="Button3" type="Button" parent="." unique_id=813672194]
+offset_left = 215.0
+offset_top = 172.0
+offset_right = 399.0
+offset_bottom = 236.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_jix8l")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

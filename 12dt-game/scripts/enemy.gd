@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
+const ENERGY_RECHARGE: int = 2
 const SPEED: float = 175.0
 var player: CharacterBody2D
-var health: int = 3
+var health: int = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +21,13 @@ func _process(delta: float) -> void:
 func take_damage() -> void:
 	if health > 0:
 		health -= 1
-	else:
+	if health <= 0:
+		var energy_bars: Array[Node] = player.energy_ui.get_children()
+		var gained_energy: int = 0
+		for bar in energy_bars:
+			if bar.value == 100 and gained_energy < ENERGY_RECHARGE:
+				bar.value = 0.0
+				gained_energy += 1
 		queue_free()
 
 func _damage_player(body: Node2D) -> void:

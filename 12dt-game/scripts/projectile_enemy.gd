@@ -3,7 +3,7 @@ extends CharacterBody2D
 const ENERGY_RECHARGE: int = 1
 const SPEED: float = 75.0
 var player: CharacterBody2D
-var health: int = 2
+var health: int = 3
 var can_attack: bool = true
 var is_attacking: bool = false
 var attack_freeze: float = 2
