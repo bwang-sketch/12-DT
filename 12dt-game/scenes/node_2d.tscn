@@ -4,28 +4,29 @@
 [ext_resource type="PackedScene" uid="uid://dcnpehhbyqtja" path="res://scenes/enemy.tscn" id="2_4vge2"]
 [ext_resource type="PackedScene" uid="uid://buyqcvi5km5hj" path="res://scenes/player.tscn" id="3_04qyp"]
 [ext_resource type="PackedScene" uid="uid://l20f8xmghrc7" path="res://scenes/projectile_enemy.tscn" id="3_4vge2"]
+[ext_resource type="Texture2D" uid="uid://m0hk02ngou8f" path="res://assets/gameplay_final.png.(no bodies).png" id="4_j7wrs"]
 [ext_resource type="Script" uid="uid://dswmmae7ido2" path="res://scripts/energy_bars.gd" id="5_04qyp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
-size = Vector2(164, 80.25)
+size = Vector2(191.75, 128.03125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
-size = Vector2(203, 83)
+size = Vector2(236, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
-size = Vector2(57.5, 42)
+size = Vector2(56.75, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
-size = Vector2(35.5, 85)
+size = Vector2(48, 75.453125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
-size = Vector2(79, 54)
+size = Vector2(79, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
-size = Vector2(29, 26)
+size = Vector2(32.5, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
-size = Vector2(95.5, 178)
+size = Vector2(106, 225)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
 size = Vector2(1169, 7)
@@ -94,6 +95,11 @@ enemy_scene = ExtResource("2_4vge2")
 projectile_enemy_spawn = NodePath("Path2D2/PathFollow2D")
 projectile_enemy_scene = ExtResource("3_4vge2")
 
+[node name="GameplayFinal_png_(noBodies)" type="Sprite2D" parent="." unique_id=1399040815]
+position = Vector2(577, 324)
+scale = Vector2(2.6869159, 2.6999998)
+texture = ExtResource("4_j7wrs")
+
 [node name="CharacterBody2D" parent="." unique_id=1052891024 node_paths=PackedStringArray("health_ui", "energy_ui") instance=ExtResource("3_04qyp")]
 position = Vector2(256, 305)
 health_ui = NodePath("../CanvasLayer/ProgressBar")
@@ -105,147 +111,63 @@ offset_right = 1153.0
 offset_bottom = 651.0
 color = Color(0.22352941, 0.13333334, 0, 0.45882353)
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=1017289462]
-offset_left = 35.0
-offset_top = 2.0
-offset_right = 199.0
-offset_bottom = 81.0
-
-[node name="ColorRect3" type="ColorRect" parent="." unique_id=1358800746]
-offset_left = 234.0
-offset_top = 2.0
-offset_right = 398.0
-offset_bottom = 81.0
-
-[node name="ColorRect4" type="ColorRect" parent="." unique_id=764292486]
-offset_left = 734.0
-offset_top = 1.0
-offset_right = 898.0
-offset_bottom = 78.0
-
-[node name="ColorRect5" type="ColorRect" parent="." unique_id=1214311529]
-offset_left = 932.0
-offset_top = 1.0
-offset_right = 1096.0
-offset_bottom = 75.0
-
-[node name="ColorRect6" type="ColorRect" parent="." unique_id=1146876793]
-offset_left = 461.0
-offset_top = 6.0
-offset_right = 664.0
-offset_bottom = 89.0
-
-[node name="ColorRect7" type="ColorRect" parent="." unique_id=1450401161]
-offset_left = 15.0
-offset_top = 601.0
-offset_right = 72.0
-offset_bottom = 643.0
-
-[node name="ColorRect8" type="ColorRect" parent="." unique_id=907439100]
-offset_left = 113.0
-offset_top = 564.0
-offset_right = 148.0
-offset_bottom = 648.0
-
-[node name="ColorRect9" type="ColorRect" parent="." unique_id=1636393072]
-offset_left = 218.0
-offset_top = 564.0
-offset_right = 253.0
-offset_bottom = 648.0
-
-[node name="ColorRect10" type="ColorRect" parent="." unique_id=850500270]
-offset_left = 366.0
-offset_top = 564.0
-offset_right = 401.0
-offset_bottom = 648.0
-
-[node name="ColorRect11" type="ColorRect" parent="." unique_id=1719303257]
-offset_left = 501.0
-offset_top = 620.0
-offset_right = 530.0
-offset_bottom = 646.0
-
-[node name="ColorRect12" type="ColorRect" parent="." unique_id=1816132138]
-offset_left = 418.0
-offset_top = 595.0
-offset_right = 497.0
-offset_bottom = 649.0
-
-[node name="ColorRect13" type="ColorRect" parent="." unique_id=605770795]
-offset_left = 614.0
-offset_top = 466.0
-offset_right = 709.0
-offset_bottom = 644.0
-
-[node name="ColorRect14" type="ColorRect" parent="." unique_id=1417569911]
-offset_left = 740.0
-offset_top = 466.0
-offset_right = 835.0
-offset_bottom = 644.0
-
-[node name="ColorRect15" type="ColorRect" parent="." unique_id=1414544175]
-offset_left = 864.0
-offset_top = 466.0
-offset_right = 959.0
-offset_bottom = 644.0
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=23259398]
 position = Vector2(-1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1278285552]
-position = Vector2(118, 41)
+position = Vector2(114, 63.9375)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=440574424]
-position = Vector2(317, 40.5)
+position = Vector2(319.5, 64.03125)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1084268415]
-position = Vector2(563.5, 46.5)
+position = Vector2(578, 60)
 shape = SubResource("RectangleShape2D_0e48y")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1322093366]
-position = Vector2(816.375, 36.5)
+position = Vector2(837.25, 64.015625)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=394769349]
-position = Vector2(1015, 34)
+position = Vector2(1033.125, 64)
 shape = SubResource("RectangleShape2D_wtcfe")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D" unique_id=325918717]
-position = Vector2(45, 621)
+position = Vector2(47.625, 626.5)
 shape = SubResource("RectangleShape2D_epypp")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D" unique_id=732676635]
-position = Vector2(131.5, 605)
+position = Vector2(133, 608.4531)
 shape = SubResource("RectangleShape2D_0hol4")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D" unique_id=553097612]
-position = Vector2(236.25, 605.5)
+position = Vector2(243, 613.90625)
 shape = SubResource("RectangleShape2D_0hol4")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D" unique_id=263013687]
-position = Vector2(384, 605)
+position = Vector2(398, 608.72656)
 shape = SubResource("RectangleShape2D_0hol4")
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D" unique_id=1982649535]
-position = Vector2(458.5, 621)
+position = Vector2(475, 617.5)
 shape = SubResource("RectangleShape2D_q6r6c")
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D" unique_id=1322491760]
-position = Vector2(516.5, 632)
+position = Vector2(532.75, 636)
 shape = SubResource("RectangleShape2D_kdubu")
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D" unique_id=1229141785]
-position = Vector2(662.25, 554)
+position = Vector2(660, 528.5)
 shape = SubResource("RectangleShape2D_d21ai")
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D" unique_id=202592881]
-position = Vector2(789, 554)
+position = Vector2(779, 533)
 shape = SubResource("RectangleShape2D_d21ai")
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D" unique_id=303959437]
-position = Vector2(912, 554)
+position = Vector2(899, 532)
 shape = SubResource("RectangleShape2D_d21ai")
 
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D" unique_id=465992466]

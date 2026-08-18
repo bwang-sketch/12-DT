@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="12DT-game"
-run/main_scene="uid://dyj63d2ucw30q"
+run/main_scene="uid://l1yi80fr4n7u"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

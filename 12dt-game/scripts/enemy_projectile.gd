@@ -10,6 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	move_local_x(speed * delta)
 
+#Runs player take damage function when enemy projectile body enters player body
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.take_damage()

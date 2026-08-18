@@ -29,14 +29,17 @@ func _process(delta: float) -> void:
 	if not timer2.time_left == 0:
 		label.text = str("%0.1f" % timer2.time_left)
 	
+	#Sets starting vector values to 0.0 in direction variable and movement inputs to x and y axis
 	var direction: Vector2 = Vector2(0.0, 0.0)
 	direction.x = Input.get_axis("ui_left", "ui_right")
 	direction.y = Input.get_axis("ui_up", "ui_down")
 
+	#Sets vector length to 1, multiplies by speed which allows for same movement speed in all directions stored in a velocity variablee
 	velocity = speed * direction.normalized()
 	
 	pivot.look_at(get_global_mouse_position())
 	
+	#Takes "ui_accept" input, if true then runs _attack() function
 	if Input.is_action_pressed("ui_accept") and can_attack:
 		_attack()
 		
@@ -46,16 +49,19 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 
-	
+#Spawns melee_scene and positions it from the player, facing the direction of the cursor
 func _attack() -> void:
 	var melee_atk = melee_atk_scene.instantiate()
 	melee_atk.rotation = pivot.rotation
 	melee_atk.global_position = melee_atk_spawn.global_position
 	add_sibling(melee_atk)
-	can_attack = false
+	#Activates melee atk cooldown
+	can_attack = false 
 	timer.start()
 
+#Spawns projectile_slash spawn facing the direction of the cursor
 func _slash() -> void:
+	#Checks available_energy func value
 	if available_energy() < 2:
 		return
 		
@@ -68,16 +74,17 @@ func _slash() -> void:
 	timer2.start()
 
 
-
+#melee atk cooldowns and projectile slash cooldowns if true then = output
 func _melee_atk_cooldown() -> void:
 	can_attack = true
 
 func projectile_slash_cooldown() -> void:
 	can_slash = true
-
+	#If the player cannot slash then timer 2 runs for the cooldown set to 10s
 	if can_slash == false:
 		timer2 = get_node("projectile_slash_cooldown")
-	
+
+#Player takes 1 damage if health is greater than 0, if health is less than 0 then scene reload
 func take_damage() -> void:
 	if health > 0:
 		health -= 1
@@ -85,6 +92,7 @@ func take_damage() -> void:
 	else:
 		get_tree().call_deferred("reload_current_scene")
 
+#Checks the amount of used energy bars and returns value to slash function
 func available_energy() -> int:
 	var amount: int = 0
 	for bar in energy_ui.get_children():
@@ -92,6 +100,7 @@ func available_energy() -> int:
 			amount += 1
 	return amount
 
+#Stores energy bars in an array from bar 6 - 5 - 4 etc. Adjusts bar value according to amount of energy used in projectile slash functionn
 func use_energy(cost: int) -> void:
 	var used_energy: int = 0
 	var energy_bars: Array[Node] = energy_ui.get_children()

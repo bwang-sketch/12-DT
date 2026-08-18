@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 	
 	move_and_slide()
 
+#Enemy takes damage when entering player attacks. If enemy dies (health <=0) bar value is set to availablee
 func take_damage() -> void:
 	if health > 0:
 		health -= 1
@@ -30,6 +31,7 @@ func take_damage() -> void:
 				gained_energy += 1
 		queue_free()
 
+#Runs player take_damage() function when enemy body hits player body
 func _damage_player(body: Node2D) -> void:
 	if body == player:
 		player.take_damage()
