@@ -5,7 +5,7 @@ extends Area2D
 func _ready() -> void:
 	pass # Replace with function body.
 
-
+#if body enters enemy or projectile_enemy body, run enemy take damage function
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.take_damage()

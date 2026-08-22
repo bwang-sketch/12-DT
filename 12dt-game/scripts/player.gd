@@ -18,6 +18,7 @@ var slash_energy: int = 2
 @export var timer2: Timer
 @export var label: Label
 
+@onready var animated_sprite = $AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,16 +32,26 @@ func _process(delta: float) -> void:
 	
 	#Sets starting vector values to 0.0 in direction variable and movement inputs to x and y axis
 	var direction: Vector2 = Vector2(0.0, 0.0)
-	direction.x = Input.get_axis("ui_left", "ui_right")
-	direction.y = Input.get_axis("ui_up", "ui_down")
-
+	direction.x = Input.get_axis("move_left", "move_right")
+	direction.y = Input.get_axis("move_up", "move_down")
+	
+	if direction.x > 0:
+		animated_sprite.flip_h = false
+	elif direction.x < 0:
+		animated_sprite.flip_h = true
+	
+	if direction.x == 0:
+		animated_sprite.play("idle")
+	else:
+		animated_sprite.play("walk")
+	
 	#Sets vector length to 1, multiplies by speed which allows for same movement speed in all directions stored in a velocity variablee
 	velocity = speed * direction.normalized()
-	
+
 	pivot.look_at(get_global_mouse_position())
 	
 	#Takes "ui_accept" input, if true then runs _attack() function
-	if Input.is_action_pressed("ui_accept") and can_attack:
+	if Input.is_action_pressed("melee_atk") and can_attack:
 		_attack()
 		
 	if Input.is_action_pressed("slash") and can_slash:

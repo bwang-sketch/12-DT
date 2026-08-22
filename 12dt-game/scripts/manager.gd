@@ -18,6 +18,7 @@ func _spawn_enemy() -> void:
 		enemy.global_position = enemy_spawn.global_position
 		add_child(enemy)
 	
+#Spawns projectile enemy along path if less than 2
 func _spawn_projectile_enemy() -> void:
 	var projectile_enemy_amount = get_tree().get_nodes_in_group("projectile_enemies").size()
 	if projectile_enemy_amount < 2:

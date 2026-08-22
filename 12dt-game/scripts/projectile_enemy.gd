@@ -26,13 +26,14 @@ func _physics_process(delta: float) -> void:
 	
 	if can_attack:
 		_projectile_attack()
-	
+	#Projectile enemy stops moving while attacking, velocity is set to 0
 	if is_attacking:
 		velocity = Vector2.ZERO
 	else:
 		velocity = SPEED * Vector2(1, 0).rotated(rotation)
 	move_and_slide()
-	
+
+#Spawns enemy projectile attack scene	
 func _projectile_attack() -> void:
 	
 	can_attack = false
@@ -46,12 +47,15 @@ func _projectile_attack() -> void:
 	is_attacking = true
 	timer.start()
 	
+	#Cooldown while attacking, sets is_attacking to false
 	await get_tree().create_timer(attack_freeze).timeout
 	is_attacking = false
-
+	
+	#Cooldown between attacks, sets can_attack to true
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
 	
+#Projectile enemy takes damage when entering player attacks. If projectile enemy dies (health <=0) bar value is set to availablee
 func take_damage() -> void:
 	if health > 0:
 		health -= 1
