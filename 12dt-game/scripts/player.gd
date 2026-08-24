@@ -45,6 +45,9 @@ func _process(delta: float) -> void:
 	else:
 		animated_sprite.play("walk")
 	
+	if direction.y != 0:
+		animated_sprite.play("walk")
+		
 	#Sets vector length to 1, multiplies by speed which allows for same movement speed in all directions stored in a velocity variablee
 	velocity = speed * direction.normalized()
 
