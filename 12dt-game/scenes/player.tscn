@@ -8,10 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://bs6feecgbmto8" path="res://assets/player_run1.png" id="6_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://caeeq54tgf68n" path="res://assets/player_idle_3.png" id="6_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://oy8wkf034teb" path="res://assets/player_run2.png" id="7_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://b1slm10td40q8" path="res://assets/atk_animation_1.png" id="7_60mlk"]
+[ext_resource type="Texture2D" uid="uid://bbft8j4osmnbq" path="res://assets/atk_animation_2.png" id="8_i4ail"]
 [ext_resource type="Texture2D" uid="uid://pos3gw86cro" path="res://assets/player_run3.png" id="8_jej6c"]
+[ext_resource type="Texture2D" uid="uid://citgup1kui60k" path="res://assets/atk_animation_3.png" id="9_a38lo"]
 [ext_resource type="Texture2D" uid="uid://bcs7b1t3ilic8" path="res://assets/player_run4.png" id="9_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://eilosdunl3uf" path="res://assets/atk_animation_4.png" id="10_4ni07"]
 [ext_resource type="Texture2D" uid="uid://ctpeho6tti63g" path="res://assets/player_run5.png" id="10_oprun"]
 [ext_resource type="Texture2D" uid="uid://bn5orxbhfv0rg" path="res://assets/player_run6.png" id="11_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://duvffisuq6jpo" path="res://assets/atk_animation_5.png" id="11_l71n6"]
+[ext_resource type="Texture2D" uid="uid://dsik4vxnen1aa" path="res://assets/atk_animation_6.png" id="12_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://ik030lf1a84b" path="res://assets/atk_animation_7.png" id="13_ujl30"]
+[ext_resource type="Texture2D" uid="uid://bldkp6fs5k7lk" path="res://assets/atk_animation_8.png" id="14_31cv2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjrip"]
 radius = 18.0
@@ -31,6 +39,35 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_60mlk")
+}, {
+"duration": 2.0,
+"texture": ExtResource("8_i4ail")
+}, {
+"duration": 2.0,
+"texture": ExtResource("9_a38lo")
+}, {
+"duration": 4.0,
+"texture": ExtResource("10_4ni07")
+}, {
+"duration": 3.0,
+"texture": ExtResource("11_l71n6")
+}, {
+"duration": 0.1,
+"texture": ExtResource("12_ke2ow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ujl30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_31cv2")
+}],
+"loop": true,
+"name": &"projectile_slash",
 "speed": 10.0
 }, {
 "frames": [{
@@ -63,7 +100,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1052891024 node_paths=PackedStringArray("melee_atk_spawn", "projectile_slash_spawn", "pivot", "timer", "timer2", "label") groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1052891024 node_paths=PackedStringArray("melee_atk_spawn", "projectile_slash_spawn", "pivot", "timer", "timer2", "label", "score_label", "animated_sprite") groups=["player"]]
 script = ExtResource("1_4flbx")
 melee_atk_scene = ExtResource("2_g2els")
 melee_atk_spawn = NodePath("Node2D/Marker2D")
@@ -73,6 +110,8 @@ pivot = NodePath("Node2D")
 timer = NodePath("Timer")
 timer2 = NodePath("Label/Timer2")
 label = NodePath("Label")
+score_label = NodePath("Label")
+animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1796838134]
 
@@ -97,7 +136,8 @@ one_shot = true
 position = Vector2(2.0000038, 1.9999999)
 scale = Vector2(2.1249998, 2.1875)
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"idle"
+animation = &"projectile_slash"
+frame_progress = 0.7355481
 
 [connection signal="timeout" from="Timer" to="." method="_melee_atk_cooldown"]
 [connection signal="timeout" from="Label/Timer2" to="." method="projectile_slash_cooldown"]

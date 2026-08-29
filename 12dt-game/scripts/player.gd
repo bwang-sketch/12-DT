@@ -6,6 +6,7 @@ var can_slash: bool = true
 var health: int = 10
 var current_energy: int = 6
 var slash_energy: int = 2
+var score: int = 0
 
 @export var health_ui: ProgressBar
 @export var energy_ui: HBoxContainer
@@ -17,8 +18,8 @@ var slash_energy: int = 2
 @export var timer: Timer
 @export var timer2: Timer
 @export var label: Label
-
-@onready var animated_sprite = $AnimatedSprite2D
+@export var score_label: Label
+@export var animated_sprite: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,7 +48,8 @@ func _process(delta: float) -> void:
 	
 	if direction.y != 0:
 		animated_sprite.play("walk")
-		
+	
+	
 	#Sets vector length to 1, multiplies by speed which allows for same movement speed in all directions stored in a velocity variablee
 	velocity = speed * direction.normalized()
 
@@ -57,7 +59,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("melee_atk") and can_attack:
 		_attack()
 		
-	if Input.is_action_pressed("slash") and can_slash:
+	if Input.is_action_just_pressed("slash") and can_slash:
+		animated_sprite.play("projectile_slash")
 		_slash()
 		
 	move_and_slide()
@@ -86,7 +89,6 @@ func _slash() -> void:
 	can_slash = false
 	use_energy(2)
 	timer2.start()
-
 
 #melee atk cooldowns and projectile slash cooldowns if true then = output
 func _melee_atk_cooldown() -> void:

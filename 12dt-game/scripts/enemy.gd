@@ -23,6 +23,7 @@ func take_damage() -> void:
 	if health > 0:
 		health -= 1
 	if health <= 0:
+		player.score + 1
 		var energy_bars: Array[Node] = player.energy_ui.get_children()
 		var gained_energy: int = 0
 		for bar in energy_bars:

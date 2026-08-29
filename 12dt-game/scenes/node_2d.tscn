@@ -266,6 +266,11 @@ show_percentage = false
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="." unique_id=224911208]
 
+[node name="Label" type="Label" parent="CanvasLayer3" unique_id=1566908253]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Silence wraiths slain: 0"
+
 [node name="Path2D" type="Path2D" parent="." unique_id=97805763]
 curve = SubResource("Curve2D_0e48y")
 
