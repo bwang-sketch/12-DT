@@ -110,7 +110,7 @@ pivot = NodePath("Node2D")
 timer = NodePath("Timer")
 timer2 = NodePath("Label/Timer2")
 label = NodePath("Label")
-score_label = NodePath("Label")
+score_label = NodePath("")
 animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1796838134]

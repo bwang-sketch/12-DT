@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var enemy: CharacterBody2D
 var speed: float = 300.0
 var can_attack: bool = true
 var can_slash: bool = true
@@ -23,11 +24,16 @@ var score: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for node in get_tree().get_nodes_in_group("enemies"):
+		enemy = node
+	
 	health_ui.max_value = health
 	health_ui.value = health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	label.text = str(score)
+	
 	if not timer2.time_left == 0:
 		label.text = str("%0.1f" % timer2.time_left)
 	
@@ -106,7 +112,7 @@ func take_damage() -> void:
 		health -= 1
 		health_ui.value = health
 	else:
-		get_tree().call_deferred("reload_current_scene")
+		get_tree().quit()
 
 #Checks the amount of used energy bars and returns value to slash function
 func available_energy() -> int:

@@ -8,7 +8,7 @@ var can_attack: bool = true
 var is_attacking: bool = false
 var attack_freeze: float = 2
 var attack_cooldown: float = 1
-
+var points_for_kill = 1
 
 @export var enemy_projectile_scene: PackedScene
 @export var enemy_projectile_spawn: Marker2D
@@ -66,6 +66,7 @@ func take_damage() -> void:
 			if bar.value == 100 and gained_energy < ENERGY_RECHARGE:
 				bar.value = 0.0
 				gained_energy += 1
+		Global.current_score += points_for_kill
 		queue_free()
 
 

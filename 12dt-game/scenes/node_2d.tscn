@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://l20f8xmghrc7" path="res://scenes/projectile_enemy.tscn" id="3_4vge2"]
 [ext_resource type="Texture2D" uid="uid://m0hk02ngou8f" path="res://assets/gameplay_final.png.(no bodies).png" id="4_j7wrs"]
 [ext_resource type="Script" uid="uid://dswmmae7ido2" path="res://scripts/energy_bars.gd" id="5_04qyp"]
+[ext_resource type="Script" uid="uid://b0vq6nrmt0dg3" path="res://scenes/current_score_label.gd" id="7_fws66"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 size = Vector2(191.75, 128.03125)
@@ -266,10 +267,13 @@ show_percentage = false
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="." unique_id=224911208]
 
-[node name="Label" type="Label" parent="CanvasLayer3" unique_id=1566908253]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Silence wraiths slain: 0"
+[node name="Current_score_label" type="Label" parent="CanvasLayer3" unique_id=1864002384]
+offset_left = 920.0
+offset_top = 22.0
+offset_right = 1132.0
+offset_bottom = 73.0
+text = "Slience wraiths slain: 99999"
+script = ExtResource("7_fws66")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=97805763]
 curve = SubResource("Curve2D_0e48y")
