@@ -63,12 +63,15 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_ujl30")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("14_31cv2")
+}, {
+"duration": 2.0,
+"texture": ExtResource("8_i4ail")
 }],
 "loop": true,
 "name": &"projectile_slash",
-"speed": 10.0
+"speed": 40.0
 }, {
 "frames": [{
 "duration": 5.0,
@@ -100,7 +103,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1052891024 node_paths=PackedStringArray("melee_atk_spawn", "projectile_slash_spawn", "pivot", "timer", "timer2", "label", "score_label", "animated_sprite") groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1052891024 node_paths=PackedStringArray("melee_atk_spawn", "projectile_slash_spawn", "pivot", "timer", "timer2", "label", "animated_sprite") groups=["player"]]
 script = ExtResource("1_4flbx")
 melee_atk_scene = ExtResource("2_g2els")
 melee_atk_spawn = NodePath("Node2D/Marker2D")
@@ -110,7 +113,6 @@ pivot = NodePath("Node2D")
 timer = NodePath("Timer")
 timer2 = NodePath("Label/Timer2")
 label = NodePath("Label")
-score_label = NodePath("")
 animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1796838134]
@@ -137,7 +139,7 @@ position = Vector2(2.0000038, 1.9999999)
 scale = Vector2(2.1249998, 2.1875)
 sprite_frames = SubResource("SpriteFrames_smehm")
 animation = &"projectile_slash"
-frame_progress = 0.7355481
+frame_progress = 0.8914434
 
 [connection signal="timeout" from="Timer" to="." method="_melee_atk_cooldown"]
 [connection signal="timeout" from="Label/Timer2" to="." method="projectile_slash_cooldown"]

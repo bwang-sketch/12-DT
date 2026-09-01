@@ -8,6 +8,7 @@ var health: int = 10
 var current_energy: int = 6
 var slash_energy: int = 2
 var score: int = 0
+var is_slashing: bool = false
 
 @export var health_ui: ProgressBar
 @export var energy_ui: HBoxContainer
@@ -47,7 +48,7 @@ func _process(delta: float) -> void:
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
 	
-	if direction.x == 0:
+	if direction.x == 0 and is_slashing == false:
 		animated_sprite.play("idle")
 	else:
 		animated_sprite.play("walk")
@@ -87,15 +88,17 @@ func _slash() -> void:
 	#Checks available_energy func value
 	if available_energy() < 2:
 		return
-		
+	
 	var projectile_slash = projectile_slash_scene.instantiate()
 	projectile_slash.rotation = pivot.rotation
 	projectile_slash.global_position = projectile_slash_spawn.global_position
 	add_sibling(projectile_slash)
 	can_slash = false
 	use_energy(2)
+	animated_sprite.play("projectile_slash")
 	timer2.start()
-
+	
+	
 #melee atk cooldowns and projectile slash cooldowns if true then = output
 func _melee_atk_cooldown() -> void:
 	can_attack = true
@@ -105,6 +108,7 @@ func projectile_slash_cooldown() -> void:
 	#If the player cannot slash then timer 2 runs for the cooldown set to 10s
 	if can_slash == false:
 		timer2 = get_node("projectile_slash_cooldown")
+		is_slashing = false
 
 #Player takes 1 damage if health is greater than 0, if health is less than 0 then scene reload
 func take_damage() -> void:
@@ -112,7 +116,7 @@ func take_damage() -> void:
 		health -= 1
 		health_ui.value = health
 	else:
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 #Checks the amount of used energy bars and returns value to slash function
 func available_energy() -> int:
