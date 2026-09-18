@@ -5,6 +5,7 @@ var projectile_enemy_amount
 var high_score = 0
 var current_score: int
 var previous_score: int
+var playerbody: CharacterBody2D
 
 @export var enemy_spawn: PathFollow2D
 @export var enemy_scene: PackedScene

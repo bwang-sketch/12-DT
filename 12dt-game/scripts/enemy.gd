@@ -5,19 +5,36 @@ const SPEED: float = 175.0
 var player: CharacterBody2D
 var health: int = 6
 var points_for_kill = 1
+var is_enemy_movement: bool
+
+@export var animated_sprite: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	is_enemy_movement = true
 	for node in get_tree().get_nodes_in_group("player"):
 		player = node
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	look_at(player.global_position)
-	velocity = SPEED * Vector2(1, 0).rotated(rotation)
+	if is_enemy_movement:
+		player = Global.playerbody
+		velocity  = position.direction_to(player.position) * SPEED
 	
+	
+	if velocity.x < 0:
+		animated_sprite.flip_h = false
+	elif velocity.x > 0:
+		animated_sprite.flip_h = true
+	
+	if velocity.x == 0:
+		animated_sprite.play("float")
+	else:
+		animated_sprite.play("float")
+		
 	move_and_slide()
+
 
 #Enemy takes damage when entering player attacks. If enemy dies (health <=0) bar value is set to availablee
 func take_damage() -> void:

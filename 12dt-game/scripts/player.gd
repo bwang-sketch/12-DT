@@ -25,6 +25,7 @@ var is_slashing: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.playerbody = self
 	for node in get_tree().get_nodes_in_group("enemies"):
 		enemy = node
 	
