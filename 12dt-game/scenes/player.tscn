@@ -23,7 +23,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjrip"]
 radius = 18.0
-height = 60.0
+height = 68.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_smehm"]
 animations = [{
@@ -136,10 +136,9 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1756502952]
 position = Vector2(2.0000038, 1.9999999)
-scale = Vector2(2.1249998, 2.1875)
+scale = Vector2(2.5, 2.574)
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"projectile_slash"
-frame_progress = 0.8914434
+animation = &"idle"
 
 [connection signal="timeout" from="Timer" to="." method="_melee_atk_cooldown"]
 [connection signal="timeout" from="Label/Timer2" to="." method="projectile_slash_cooldown"]

@@ -62,7 +62,7 @@ position = Vector2(-4, -3)
 scale = Vector2(3, 3.094)
 sprite_frames = SubResource("SpriteFrames_mnhyu")
 animation = &"projectile_float"
-frame_progress = 0.35056087
+frame_progress = 0.007278748
 
 [node name="Timer" type="Timer" parent="." unique_id=1224792709]
 wait_time = 3.0

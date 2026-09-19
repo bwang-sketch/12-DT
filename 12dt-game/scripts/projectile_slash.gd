@@ -1,6 +1,8 @@
 extends Area2D
 
-var speed: float = 1300.0
+var speed: float = 2000.0
+
+@export var animated_sprite: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,6 +10,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	move_local_x(speed * delta)
+	animated_sprite.play("projectile_slash_ani")
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
