@@ -9,7 +9,9 @@ var is_attacking: bool = false
 var attack_freeze: float = 2
 var attack_cooldown: float = 1
 var points_for_kill = 1
+var is_projectile_enemy_movement: bool
 
+@export var animated_sprite: AnimatedSprite2D
 @export var enemy_projectile_scene: PackedScene
 @export var enemy_projectile_spawn: Marker2D
 @export var pivot: Node2D
@@ -17,20 +19,35 @@ var points_for_kill = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	is_projectile_enemy_movement = true
 	for node in get_tree().get_nodes_in_group("player"):
 		player = node
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	look_at(player.global_position)
+	
+	if velocity.x < 0:
+		animated_sprite.flip_h = false
+	elif velocity.x > 0:
+		animated_sprite.flip_h = true
+	
+	if velocity.x == 0:
+		animated_sprite.play("projectile_float")
+	else:
+		animated_sprite.play("projectile_float")
 	
 	if can_attack:
 		_projectile_attack()
+		
 	#Projectile enemy stops moving while attacking, velocity is set to 0
 	if is_attacking:
 		velocity = Vector2.ZERO
+	elif is_projectile_enemy_movement:
+		player = Global.playerbody
+		velocity  = position.direction_to(player.position) * SPEED
 	else:
-		velocity = SPEED * Vector2(1, 0).rotated(rotation)
+		velocity = SPEED * Vector2(1, 0)
+		
 	move_and_slide()
 
 #Spawns enemy projectile attack scene	
@@ -42,7 +59,9 @@ func _projectile_attack() -> void:
 	var enemy_projectile = enemy_projectile_scene.instantiate()
 	enemy_projectile.rotation = pivot.global_rotation
 	enemy_projectile.global_position = enemy_projectile_spawn.global_position
+	enemy_projectile.look_at(player.global_position)
 	add_sibling(enemy_projectile)
+	animated_sprite.play("projectile_ani")
 	can_attack = false
 	is_attacking = true
 	timer.start()

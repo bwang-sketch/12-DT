@@ -1,10 +1,12 @@
 extends Area2D
 
+@export var animated_sprite: AnimatedSprite2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
+	animated_sprite.play("melee_ani")
 
 #if body enters enemy or projectile_enemy body, run enemy take damage function
 func _on_body_entered(body: Node2D) -> void:

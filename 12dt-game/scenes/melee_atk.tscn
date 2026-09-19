@@ -1,25 +1,51 @@
 [gd_scene format=3 uid="uid://bol5vei628r17"]
 
 [ext_resource type="Script" uid="uid://by7s6b740bj75" path="res://scripts/melee_atk.gd" id="1_p0tq0"]
+[ext_resource type="Texture2D" uid="uid://bvgmjsrghwi4f" path="res://assets/melee_atk_1.png" id="2_cvxcp"]
+[ext_resource type="Texture2D" uid="uid://cy8qr4aubt36p" path="res://assets/melee_atk_2.png" id="3_v6fjs"]
+[ext_resource type="Texture2D" uid="uid://dt83fweyqm6c6" path="res://assets/melee_atk_3.png" id="4_sdq0v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muump"]
 radius = 20.0
-height = 120.0
+height = 159.99983
 
-[node name="Area2D" type="Area2D" unique_id=1745199217 groups=["projectiles"]]
+[sub_resource type="SpriteFrames" id="SpriteFrames_bogq1"]
+animations = [{
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("2_cvxcp")
+}, {
+"duration": 0.2,
+"texture": ExtResource("3_v6fjs")
+}, {
+"duration": 0.2,
+"texture": ExtResource("4_sdq0v")
+}, {
+"duration": 0.2,
+"texture": ExtResource("3_v6fjs")
+}, {
+"duration": 0.2,
+"texture": ExtResource("2_cvxcp")
+}],
+"loop": true,
+"name": &"melee_ani",
+"speed": 10.0
+}]
+
+[node name="Area2D" type="Area2D" unique_id=1745199217 node_paths=PackedStringArray("animated_sprite") groups=["projectiles"]]
 script = ExtResource("1_p0tq0")
+animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493183350]
-position = Vector2(36, -1)
+position = Vector2(49.000004, -1)
 rotation = 1.5722588
 shape = SubResource("CapsuleShape2D_muump")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=579116846]
-offset_left = 95.889206
-offset_top = -21.999092
-offset_right = 135.8892
-offset_bottom = 97.8901
-rotation = 1.562746
-color = Color(0.28627452, 1, 0, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1618101089]
+position = Vector2(57, 1.0000076)
+scale = Vector2(7.9375, 2.75)
+sprite_frames = SubResource("SpriteFrames_bogq1")
+animation = &"melee_ani"
+frame_progress = 0.83137935
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

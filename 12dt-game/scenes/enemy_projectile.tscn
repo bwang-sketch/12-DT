@@ -1,22 +1,44 @@
 [gd_scene format=3 uid="uid://p68wnda03fnm"]
 
 [ext_resource type="Script" uid="uid://4nlt5ep3xadj" path="res://scripts/enemy_projectile.gd" id="1_lofwd"]
+[ext_resource type="Texture2D" uid="uid://bt0gbnpon0fva" path="res://assets/projectile_enemy_atk_1.png" id="2_wtqwx"]
+[ext_resource type="Texture2D" uid="uid://h44hirngqctx" path="res://assets/projectile_enemy_atk_2.png" id="3_ldodw"]
+[ext_resource type="Texture2D" uid="uid://fyd31btl6t7k" path="res://assets/projectile_enemy_atk_3.png" id="4_nb2xg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66jwx"]
-size = Vector2(40, 6)
+size = Vector2(15, 15)
 
-[node name="Area2D" type="Area2D" unique_id=1811320204 groups=["enemy_projectiles"]]
+[sub_resource type="SpriteFrames" id="SpriteFrames_6yowe"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_wtqwx")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_ldodw")
+}, {
+"duration": 1.5,
+"texture": ExtResource("4_nb2xg")
+}],
+"loop": true,
+"name": &"projectile_ani",
+"speed": 10.0
+}]
+
+[node name="Area2D" type="Area2D" unique_id=1811320204 node_paths=PackedStringArray("animated_sprite") groups=["enemy_projectiles"]]
 script = ExtResource("1_lofwd")
+animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1981226014]
+position = Vector2(0.5, 1.5000005)
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_66jwx")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=960519256]
-offset_left = -20.0
-offset_top = -3.0
-offset_right = 20.0
-offset_bottom = 3.0
-color = Color(1, 0.74316293, 0.9305872, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1962227722]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_6yowe")
+animation = &"projectile_ani"
+frame_progress = 0.5570881
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

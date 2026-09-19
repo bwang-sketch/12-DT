@@ -2,15 +2,42 @@
 
 [ext_resource type="Script" uid="uid://c7x6d4818m6ab" path="res://scripts/projectile_enemy.gd" id="1_yrpu3"]
 [ext_resource type="PackedScene" uid="uid://p68wnda03fnm" path="res://scenes/enemy_projectile.tscn" id="2_ffp01"]
+[ext_resource type="Texture2D" uid="uid://cnvb6x3mlua7i" path="res://assets/Projectile_enemy_float_1.png" id="3_hcqsc"]
+[ext_resource type="Texture2D" uid="uid://bvxu6li42sao2" path="res://assets/Projectile_enemy_float_2.png" id="4_yc545"]
+[ext_resource type="Texture2D" uid="uid://dte1sxkfo665g" path="res://assets/Projectile_enemy_float_3.png" id="5_55n3g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_426hy"]
-radius = 20.09975
+radius = 13.812233
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wkbwq"]
-radius = 21.095022
+radius = 14.670454
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=582937652 node_paths=PackedStringArray("enemy_projectile_spawn", "pivot", "timer") groups=["projectile_enemies"]]
+[sub_resource type="SpriteFrames" id="SpriteFrames_mnhyu"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("3_hcqsc")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_yc545")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_55n3g")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_yc545")
+}, {
+"duration": 2.0,
+"texture": ExtResource("3_hcqsc")
+}],
+"loop": true,
+"name": &"projectile_float",
+"speed": 10.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=582937652 node_paths=PackedStringArray("animated_sprite", "enemy_projectile_spawn", "pivot", "timer") groups=["projectile_enemies"]]
 script = ExtResource("1_yrpu3")
+animated_sprite = NodePath("AnimatedSprite2D")
 enemy_projectile_scene = ExtResource("2_ffp01")
 enemy_projectile_spawn = NodePath("Node2D/Marker2D")
 pivot = NodePath("Node2D")
@@ -18,22 +45,24 @@ timer = NodePath("Timer")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1051063046]
 
-[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=117833778]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-color = Color(0.35225967, 8.413255e-05, 0.35225695, 1)
-
 [node name="Marker2D" type="Marker2D" parent="Node2D" unique_id=947371911]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=389285075]
+scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_426hy")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=317546916]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1100166565]
+scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_wkbwq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=111667511]
+position = Vector2(-4, -3)
+scale = Vector2(3, 3.094)
+sprite_frames = SubResource("SpriteFrames_mnhyu")
+animation = &"projectile_float"
+frame_progress = 0.35056087
 
 [node name="Timer" type="Timer" parent="." unique_id=1224792709]
 wait_time = 3.0
