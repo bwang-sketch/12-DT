@@ -1,4 +1,4 @@
-extends RichTextLabel
+extends Label
 
 var default_text = "High score: "
 

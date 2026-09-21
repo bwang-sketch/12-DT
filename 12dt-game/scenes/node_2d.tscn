@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cla3dkhf3rr63" path="res://assets/candle.png" id="10_08kqv"]
 [ext_resource type="Texture2D" uid="uid://g28kek4hyu6q" path="res://assets/Chair_1.png" id="11_f6ptj"]
 [ext_resource type="Texture2D" uid="uid://b57dwo57j5h18" path="res://assets/Chair_2.png" id="12_hsdmi"]
-[ext_resource type="Script" uid="uid://2afrgme6salh" path="res://scripts/current_score.gd" id="13_hsdmi"]
-[ext_resource type="Script" uid="uid://br3l7p1nmwncx" path="res://scenes/high_score.gd" id="14_ifa78"]
+[ext_resource type="Script" uid="uid://cqiiw627lvrq7" path="res://current_score_2.gd" id="15_3kg8w"]
+[ext_resource type="Script" uid="uid://brn5wmfmkunua" path="res://scripts/high_score_2.gd" id="16_x63s8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtcfe"]
 size = Vector2(191.75, 128.03125)
@@ -357,21 +357,21 @@ autostart = true
 
 [node name="Score_labels" type="StaticBody2D" parent="." unique_id=72257501]
 
-[node name="Current_score" type="RichTextLabel" parent="Score_labels" unique_id=2015278410]
-offset_left = 905.0
-offset_top = 23.0
-offset_right = 1124.0
-offset_bottom = 49.0
+[node name="Current_score2" type="Label" parent="Score_labels" unique_id=707141058]
+offset_left = 906.0
+offset_top = 68.0
+offset_right = 1118.0
+offset_bottom = 91.0
 text = "Silence wraiths slain: 99999"
-script = ExtResource("13_hsdmi")
+script = ExtResource("15_3kg8w")
 
-[node name="High_score" type="RichTextLabel" parent="Score_labels" unique_id=1977537545]
-offset_left = 981.0
-offset_top = 45.0
-offset_right = 1129.0
-offset_bottom = 85.0
+[node name="High_score2" type="Label" parent="Score_labels" unique_id=1878638571]
+offset_left = 982.0
+offset_top = 90.0
+offset_right = 1118.0
+offset_bottom = 113.0
 text = "High score: 99999"
-script = ExtResource("14_ifa78")
+script = ExtResource("16_x63s8")
 
 [connection signal="timeout" from="Timer" to="." method="_spawn_enemy"]
 [connection signal="timeout" from="Timer2" to="." method="_spawn_projectile_enemy"]

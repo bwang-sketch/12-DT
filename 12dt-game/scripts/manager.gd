@@ -4,7 +4,6 @@ var enemy_amount
 var projectile_enemy_amount
 var high_score = 0
 var current_score: int
-var previous_score: int
 var playerbody: CharacterBody2D
 
 @export var enemy_spawn: PathFollow2D
@@ -40,6 +39,5 @@ func _process(delta: float) -> void:
 	update_score()
 
 func update_score():
-	Global.previous_score = Global.current_score
 	if Global.current_score > Global.high_score:
 		Global.high_score = Global.current_score

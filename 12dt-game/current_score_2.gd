@@ -1,4 +1,4 @@
-extends RichTextLabel
+extends Label
 
 var default_text = "Silence wraiths slain: "
 
