@@ -1,4 +1,5 @@
 extends Area2D
+
 var speed: float = 700.0
 
 @export var animated_sprite: AnimatedSprite2D

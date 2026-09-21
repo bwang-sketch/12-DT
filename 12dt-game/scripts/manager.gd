@@ -17,6 +17,7 @@ func _spawn_enemy() -> void:
 	var enemy_amount = get_tree().get_nodes_in_group("enemies").size()
 	if enemy_amount < 1:
 		
+		#Spawns melee enemy along path
 		var enemy = enemy_scene.instantiate()
 		enemy_spawn.progress_ratio = randf_range(0.0, 1.0)
 		enemy.global_position = enemy_spawn.global_position
@@ -36,4 +37,9 @@ func _spawn_projectile_enemy() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	update_score()
+
+func update_score():
+	Global.previous_score = Global.current_score
+	if Global.current_score > Global.high_score:
+		Global.high_score = Global.current_score

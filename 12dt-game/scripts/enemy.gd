@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 		player = Global.playerbody
 		velocity  = position.direction_to(player.position) * SPEED
 	
-	
+	#Flips enemy sprite position depending on velocity.x value
 	if velocity.x < 0:
 		animated_sprite.flip_h = false
 	elif velocity.x > 0:
@@ -36,10 +36,11 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 
-#Enemy takes damage when entering player attacks. If enemy dies (health <=0) bar value is set to availablee
+#Enemy takes damage when entering player attacks
 func take_damage() -> void:
 	if health > 0:
 		health -= 1
+	#If enemy dies (health <=0) bar value is set to available
 	if health <= 0:
 		player.score += 1
 		var energy_bars: Array[Node] = player.energy_ui.get_children()

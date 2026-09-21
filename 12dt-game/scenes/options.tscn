@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://chey5rkgv437d"]
+
+[ext_resource type="Script" uid="uid://btos56ghkvwtu" path="res://scripts/options.gd" id="1_c2u1v"]
+
+[node name="Node2D" type="Node2D" unique_id=2020609502]
+script = ExtResource("1_c2u1v")
+
+[node name="Label" type="Label" parent="." unique_id=930623019]
+offset_left = 493.0
+offset_top = 289.0
+offset_right = 699.0
+offset_bottom = 359.0
+text = "No options :)"
+
+[node name="Label2" type="Label" parent="." unique_id=1177272516]
+offset_left = 17.0
+offset_top = 23.0
+offset_right = 202.0
+offset_bottom = 158.0
+text = "< Exit"
+
+[node name="Button" type="Button" parent="." unique_id=1305967727]
+offset_left = 12.0
+offset_top = 23.0
+offset_right = 68.0
+offset_bottom = 48.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

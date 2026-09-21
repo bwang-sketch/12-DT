@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var enemy: CharacterBody2D
-var speed: float = 300.0
+var speed: float = 350.0
 var can_attack: bool = true
 var can_slash: bool = true
 var health: int = 10
@@ -36,6 +36,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	label.text = str(score)
 	
+	#Checks timer value in 0.0 decimal places
 	if not timer2.time_left == 0:
 		label.text = str("%0.1f" % timer2.time_left)
 	
@@ -49,16 +50,14 @@ func _process(delta: float) -> void:
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
 	
-	if direction.x == 0 and is_slashing == false:
-		animated_sprite.play("idle")
-	else:
-		animated_sprite.play("walk")
-	
-	if direction.y != 0:
-		animated_sprite.play("walk")
+	if not is_slashing:
+		if direction.x == 0 and direction.y == 0:
+			animated_sprite.play("idle")
+		else:
+			animated_sprite.play("walk")
 	
 	
-	#Sets vector length to 1, multiplies by speed which allows for same movement speed in all directions stored in a velocity variablee
+	#Sets vector length to 1, multiplies by speed.
 	velocity = speed * direction.normalized()
 
 	pivot.look_at(get_global_mouse_position())
@@ -68,7 +67,6 @@ func _process(delta: float) -> void:
 		_attack()
 		
 	if Input.is_action_just_pressed("slash") and can_slash:
-		animated_sprite.play("projectile_slash")
 		_slash()
 		
 	move_and_slide()
@@ -86,19 +84,32 @@ func _attack() -> void:
 
 #Spawns projectile_slash spawn facing the direction of the cursor
 func _slash() -> void:
+	var direction: Vector2 = Vector2(0.0, 0.0)
 	#Checks available_energy func value
-	if available_energy() < 2:
+	if available_energy() < 2 or is_slashing:
 		return
+	
+	if direction.x > 0:
+		animated_sprite.flip_h = false
+	elif direction.x < 0:
+		animated_sprite.flip_h = true
+	
+	animated_sprite.play("projectile_slash")
+	can_slash = false
+	use_energy(2)
+	timer2.start()
+	
+	is_slashing = true
+	
+	#Projectile slash body spawns after animation has been played
+	await animated_sprite.animation_finished
 	
 	var projectile_slash = projectile_slash_scene.instantiate()
 	projectile_slash.rotation = pivot.rotation
 	projectile_slash.global_position = projectile_slash_spawn.global_position
 	add_sibling(projectile_slash)
-	can_slash = false
-	use_energy(2)
-	animated_sprite.play("projectile_slash")
-	timer2.start()
 	
+	is_slashing = false
 	
 #melee atk cooldowns and projectile slash cooldowns if true then = output
 func _melee_atk_cooldown() -> void:
@@ -116,6 +127,7 @@ func take_damage() -> void:
 	if health > 0:
 		health -= 1
 		health_ui.value = health
+		print("Hit")
 	else:
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
@@ -127,11 +139,12 @@ func available_energy() -> int:
 			amount += 1
 	return amount
 
-#Stores energy bars in an array from bar 6 - 5 - 4 etc. Adjusts bar value according to amount of energy used in projectile slash functionn
+#Stores energy bars in an array from bar 6 - 5 - 4 etc
 func use_energy(cost: int) -> void:
 	var used_energy: int = 0
 	var energy_bars: Array[Node] = energy_ui.get_children()
 	energy_bars.reverse()
+	#Adjusts bar value according to amount of energy used in projectile slash function
 	for bar in energy_bars:
 		if bar.value == 0.0 and used_energy < cost: 
 			bar.value = 100

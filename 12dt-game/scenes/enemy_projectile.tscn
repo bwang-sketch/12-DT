@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://h44hirngqctx" path="res://assets/projectile_enemy_atk_2.png" id="3_ldodw"]
 [ext_resource type="Texture2D" uid="uid://fyd31btl6t7k" path="res://assets/projectile_enemy_atk_3.png" id="4_nb2xg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_66jwx"]
-size = Vector2(15, 15)
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtqwx"]
+radius = 8.514693
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6yowe"]
 animations = [{
@@ -30,9 +30,8 @@ script = ExtResource("1_lofwd")
 animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1981226014]
-position = Vector2(0.5, 1.5000005)
 scale = Vector2(3, 3)
-shape = SubResource("RectangleShape2D_66jwx")
+shape = SubResource("CircleShape2D_wtqwx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1962227722]
 scale = Vector2(3, 3)
